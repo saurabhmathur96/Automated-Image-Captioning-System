@@ -99,3 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+data/annotations
+data/train2014
+
+data/annotations_trainval2014.zip
+data/train2014.zip
