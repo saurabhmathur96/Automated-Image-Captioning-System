@@ -102,6 +102,13 @@ ENV/
 
 data/annotations
 data/train2014
+data/index_to_token.json
+data/train_captions.json
+data/train_features_matrix.npz
+data/train_inputs.npz
+data/train_targets.npz
 
 data/annotations_trainval2014.zip
 data/train2014.zip
+data/val2014.zip
+
