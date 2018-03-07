@@ -59,5 +59,5 @@ if __name__ == '__main__':
     tensorboard = TensorBoard(log_dir='./logs', histogram_freq=0,
                           write_graph=True, write_images=False)
     caption_model.fit_generator(data_generator, steps_per_epoch=391978 // args.batch_size, epochs=args.epochs, callbacks=[tensorboard])
-    save_path = path.join('..', 'models', 'model', 'word_model_%s.h5' % str(datetime.now()))
+    save_path = path.join('..', 'models', 'caption_model_%s.h5' % str(datetime.now()))
     caption_model.save(save_path)
