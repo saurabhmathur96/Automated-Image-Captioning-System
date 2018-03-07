@@ -21,6 +21,8 @@ if __name__ == '__main__':
                         dest='feature_vector_length', default=2048,  type=int)
     parser.add_argument('--hidden_layer_size',
                         dest='hidden_layer_size', default=2048,  type=int)
+    parser.add_argument('--epochs',
+                        dest='epochs', default=5,  type=int)
     args = parser.parse_args()
 
     
@@ -53,6 +55,6 @@ if __name__ == '__main__':
                                           maximum_caption_length=args.maximum_caption_length,
                                           hidden_size=128)
     caption_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    caption_model.fit_generator(data_generator, steps_per_epoch=391978 // args.batch_size)
+    caption_model.fit_generator(data_generator, steps_per_epoch=391978 // args.batch_size, epochs=args.epochs)
     save_path = path.join('..', 'models', 'model', 'word_model_%s.h5' % str(datetime.now()))
     caption_model.save(save_path)
