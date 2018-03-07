@@ -57,5 +57,5 @@ if __name__ == '__main__':
                                           hidden_size=128)
     caption_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     caption_model.fit_generator(data_generator, steps_per_epoch=391978 // args.batch_size, epochs=args.epochs)
-    save_path = path.join('..', 'models', 'caption_model_%s.h5' % str(datetime.now()))
+    save_path = path.join('models', 'caption_model_%s.h5' % str(datetime.now()))
     caption_model.save(save_path)
