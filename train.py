@@ -56,7 +56,7 @@ if __name__ == '__main__':
                                           maximum_caption_length=args.maximum_caption_length,
                                           hidden_size=128)
     caption_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    tensorboard = TensorBoard(log_dir='./logs', histogram_freq=0,
+    tensorboard = TensorBoard(log_dir='./logs',histogram_freq=1,
                           write_graph=True, write_images=False)
     caption_model.fit_generator(data_generator, steps_per_epoch=391978 // args.batch_size, epochs=args.epochs, callbacks=[tensorboard])
     save_path = path.join('..', 'models', 'caption_model_%s.h5' % str(datetime.now()))
