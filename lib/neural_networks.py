@@ -18,7 +18,7 @@ def CaptionGeneratorModel(image_feature_vector_length, vocabulary_size, maximum_
     caption_model_output = TimeDistributed(Dense(hidden_size, activation='relu'))(caption_model_blstm_output)
 
     merged = concatenate([image_model_output, caption_model_output])
-    blstm_output = Bidirectional(LSTM(hidden_size, return_sequences=False))(merged)
+    blstm_output = Bidirectional(LSTM(hidden_size*2, return_sequences=False))(merged)
     dense_output = Dense(vocabulary_size)(blstm_output)
     output = Activation('softmax')(dense_output)
     final_model = Model(inputs=[image_model_input, caption_model_input], outputs=[output])
