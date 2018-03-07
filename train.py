@@ -4,6 +4,7 @@ from os import path
 import numpy as np
 import argparse
 from datetime import datetime
+from keras.callbacks import TensorBoard
 
 if __name__ == '__main__':
     #
@@ -55,6 +56,8 @@ if __name__ == '__main__':
                                           maximum_caption_length=args.maximum_caption_length,
                                           hidden_size=128)
     caption_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    caption_model.fit_generator(data_generator, steps_per_epoch=391978 // args.batch_size, epochs=args.epochs)
+    tensorboard = TensorBoard(log_dir='./logs', histogram_freq=0,
+                          write_graph=True, write_images=False)
+    caption_model.fit_generator(data_generator, steps_per_epoch=391978 // args.batch_size, epochs=args.epochs, callbacks=[tensorboard])
     save_path = path.join('..', 'models', 'model', 'word_model_%s.h5' % str(datetime.now()))
     caption_model.save(save_path)
